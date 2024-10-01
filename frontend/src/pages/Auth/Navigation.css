@@ -1,0 +1,75 @@
+/* Desktop Styles */
+#navigation-container {
+  width: 4%;
+  transition: width 0.3s ease-in-out;
+  overflow: hidden; /* Hide overflowing content during transition */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  position: fixed;
+  background-color: #000;
+  color: white;
+  z-index: 9999;
+}
+
+#navigation-container:hover {
+  width: 15%;
+}
+
+/* Initially hide nav-item-name */
+.nav-item-name {
+  display: none;
+  transition: opacity 0.2s ease-in-out; /* Add opacity transition */
+}
+
+#navigation-container:hover .nav-item-name {
+  display: block;
+  opacity: 1;
+}
+
+/* Mobile Styles */
+.mobile-menu-icon {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  /* Sidebar closed */
+  #navigation-container {
+    width: 0%;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+  }
+
+  /* Sidebar open */
+  #navigation-container.show-sidebar {
+    width: 50%; /* Take up half the screen */
+    transform: translateX(0);
+  }
+
+  /* Display the menu icon on mobile */
+  .mobile-menu-icon {
+    display: block;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 10000; /* Ensure it is above other content */
+  }
+
+  /* Ensure text (nav-item-name) is always visible when sidebar is open */
+  #navigation-container.show-sidebar .nav-item-name {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out; /* Fade in text when sidebar opens */
+  }
+
+  /* Remove hover requirement for mobile text appearance */
+  #navigation-container .nav-item-name {
+    display: block;
+  }
+
+  /* Adjust layout for mobile devices */
+  .nav-item-name {
+    font-size: 1.2rem; /* Adjust font size for mobile if necessary */
+  }
+}
